@@ -3,7 +3,7 @@
 <div>
   <img src="https://github.com/devicons/devicon/blob/master/icons/tailwindcss/tailwindcss-original.svg"  title="tailwind" alt="tailwind" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg" title="react" alt="react" width="40" height="40"/>&nbsp;
-  <img src="https://super-static-assets.s3.amazonaws.com/726844e5-a1cb-4f61-85b9-4d8c282724f6/uploads/logo/c0390660-a469-4e1b-82ff-f5990a9d1675.png" title="spline" alt="spline" width="80" height="40"/>&nbsp;
+  <img src="https://threejs.org/files/projects/spline.png" title="spline" alt="spline" width="80" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-original-wordmark.svg" title="NodeJS" alt="NodeJS" width="40" height="40"/>&nbsp;
 </div>
 
