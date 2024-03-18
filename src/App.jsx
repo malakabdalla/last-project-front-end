@@ -1,10 +1,6 @@
-// import { useState } from 'react'
-
 import { AudioInput, Message } from './components';
 
-import './App.css'
-
-function App() {
+export default function App() {
 
     // Mock data for the transcribed conversation between the user and the language model
     const mockConversation = [
@@ -26,18 +22,14 @@ function App() {
         },
     ];
 
-
-
     return (
-        <>
+        <main className=" mt-20 flex flex-col items-center gap-10">
             {mockConversation
-                .filter(item => item.role !== 'system') // Exclude system messages
+                .filter(item => item.role !== 'system') // Exclude 'system' messages
                 .map((item, index) => (
                     <Message key={index} role={item.role} message={item.message} />
                 ))}
             <AudioInput />
-        </>
+        </main>
     )
 }
-
-export default App
