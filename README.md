@@ -1,10 +1,10 @@
 # Ikigai - a lifeline for the linguistically stranded
 
 <div>
-  <img src="https://github.com/devicons/devicon/blob/master/icons/tailwindcss/tailwindcss-original.svg"  title="tailwind" alt="tailwind" width="40" height="40"/>&nbsp;
-  <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg" title="react" alt="react" width="40" height="40"/>&nbsp;
-  <img src="https://i.ytimg.com/vi/f2v3riyxU7Y/maxresdefault.jpg" title="spline" alt="spline" width="120" height="120"/>&nbsp;
-  <img src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-original-wordmark.svg" title="NodeJS" alt="NodeJS" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/tailwindcss/tailwindcss-original.svg"  title="TailwindCSS" alt="TailwindCSS" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg" title="React" alt="React" width="40" height="40"/>&nbsp;
+  <img src="https://d33wubrfki0l68.cloudfront.net/6e818a6053f5a11d48f2070de259173df357290c/207d7/_assets/_images/spline_logo.png" title="Spline" alt="Spline" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-original-wordmark.svg" title="GSAP" alt="GSAP" width="40" height="40"/>&nbsp;
 </div>
 
 <br>
