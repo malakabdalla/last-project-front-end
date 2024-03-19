@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { AudioInput, Message } from './components';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    // Mock data for the transcribed conversation between the user and the language model
+    const mockConversation = [
+        {
+            role: 'system',
+            message: "You are a helpful language tutor. Your job is to help the user learn Gujarati...",
+        },
+        {
+            role: 'assistant',
+            message: "Hello, welcome to our shared learning space. What brings you here today?",
+        },
+        {
+            role: 'user',
+            message: "I want to learn Gujarati. I am a beginner and I want to learn the basics.",
+        },
+        {
+            role: 'assistant',
+            message: "Great! I can help you with that. Let's start with the basics. Do you know how to say 'hello' in Gujarati?",
+        },
+    ];
+
+    return (
+        <main className="mt-20 flex flex-col items-center gap-10">
+            {mockConversation
+                .filter(item => item.role !== 'system') // Exclude 'system' messages
+                .map((item, index) => (
+                    <Message key={index} role={item.role} message={item.message} />
+                ))}
+            <AudioInput />
+        </main>
+    )
 }
-
-export default App
