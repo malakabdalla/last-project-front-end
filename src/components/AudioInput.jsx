@@ -2,15 +2,57 @@ import { useState } from 'react';
 
 export default function AudioInput() {
     const [recording, setRecording] = useState(false);
+    const [mediaRecorder, setMediaRecorder] = useState(null);
+    const [audioChunks, setAudioChunks] = useState([]);
 
-    function startRecording() {
-        console.log('Recording started');
-        setRecording(true);
+    async function startRecording() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const recorder = new MediaRecorder(stream);
+            recorder.ondataavailable = (event) => {
+                setAudioChunks((currentChunks) => [...currentChunks, event.data]);
+            };
+            recorder.start();
+            setMediaRecorder(recorder);
+
+            console.log('Recording started');
+            setRecording(true);
+        } catch (error) {
+            console.error('Error accessing audio device:', error);
+        }
     }
 
     function stopRecording() {
+        if (mediaRecorder) {
+            mediaRecorder.stop();
+            // Reset the mediaRecorder and audioChunks state
+            setMediaRecorder(null);
+            setAudioChunks([]);
+        }
+
+        sendAudioToServer();
+
         console.log('Recording stopped');
         setRecording(false);
+    }
+
+    async function sendAudioToServer() {
+        if (audioChunks.length > 0) {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/flac' });
+            const formData = new FormData();
+            formData.append('audio', audioBlob);
+
+            try {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/send-speech-audio`, {
+                    method: 'POST',
+                    body: formData,
+                });
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Error sending audio to server:', error);
+            }
+        }
     }
 
     return (

@@ -23,7 +23,7 @@ export default function App() {
     ];
 
     return (
-        <main className=" mt-20 flex flex-col items-center gap-10">
+        <main className="mt-20 flex flex-col items-center gap-10">
             {mockConversation
                 .filter(item => item.role !== 'system') // Exclude 'system' messages
                 .map((item, index) => (
