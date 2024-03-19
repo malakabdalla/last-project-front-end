@@ -61,7 +61,7 @@ export default function App() {
       console.log("data:", data);
 
       addAudioToAudios(data.modelAudio);
-      // addAudioToAudios(data.userAudio);
+      addAudioToAudios(data.userAudio);
 
     } catch (error) {
       console.error("Error sending audio to server:", error);
