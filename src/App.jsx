@@ -29,10 +29,11 @@ export default function App() {
     const [audios, setAudios] = useState([]);
 
     useEffect(() => {
+        console.log(import.meta.env.VITE_BACKEND_URL);
         // Make a generic request to the backend to wake up the server
         (async () => {
             try {
-                const response = await fetch("http://localhost:3000/");
+                const response = await fetch(import.meta.env.VITE_BACKEND_URL + '/');
                 if (response.status === 200) console.log("Server is available!");
             } catch (error) {
                 console.error("Error checking server availability:", error);
@@ -64,7 +65,7 @@ export default function App() {
 
         try {
             console.log("Sending audio to server...");
-            const response = await fetch("http://localhost:3000/receive", {
+            const response = await fetch(import.meta.env.VITE_BACKEND_URL + '/receive', {
                 method: "POST",
                 body: formData,
             });
