@@ -12,6 +12,7 @@ const mockConversation = [
         role: "assistant",
         message:
             "Hello, welcome to our shared learning space. What brings you here today?",
+        audio: ''
     },
     {
         role: "user",
@@ -26,6 +27,17 @@ const mockConversation = [
 ];
 
 export default function App() {
+
+    const [conversation, setConversation] = useState([]);
+
+    function addMessageToConversation(messageObject) {
+        setConversation((prev) => [...prev, messageObject]);
+    }
+
+    function __TEMP__extractUserTranscribedText(userTranscription) {
+        return userTranscription[0].alternatives[0].transcript;
+    }
+
     const [audios, setAudios] = useState([]);
 
     useEffect(() => {
@@ -41,11 +53,11 @@ export default function App() {
         })();
     }, []);
 
-    function addAudioToAudios(base64String) {
-        const audioBlob = base64ToBlob(base64String, 'audio/mpeg');
-        const audioURL = URL.createObjectURL(audioBlob);
-        setAudios((prev) => [...prev, audioURL]);
-    }
+    // function addAudioToAudios(base64String) {
+    //     const audioBlob = base64ToBlob(base64String, 'audio/mpeg');
+    //     const audioURL = URL.createObjectURL(audioBlob);
+    //     setAudios((prev) => [...prev, audioURL]);
+    // }
 
     function base64ToBlob(base64, type) {
         const binaryString = window.atob(base64);
@@ -73,8 +85,24 @@ export default function App() {
 
             console.log("data:", data);
 
-            addAudioToAudios(data.modelAudio);
-            addAudioToAudios(data.userAudio);
+            // Add the returned data to the conversation array 
+            const userMessage = {
+                role: "user",
+                message: __TEMP__extractUserTranscribedText(data.userTranscription),
+                audio: URL.createObjectURL(base64ToBlob(data.userAudio, 'audio/mpeg'))
+            };
+
+            const modelMessage = {
+                role: "assistant",
+                message: data.modelTranscription,
+                audio: URL.createObjectURL(base64ToBlob(data.modelAudio, 'audio/mpeg'))
+            };
+
+            addMessageToConversation(userMessage);
+            addMessageToConversation(modelMessage);
+
+            // addAudioToAudios(data.modelAudio);
+            // addAudioToAudios(data.userAudio);
 
         } catch (error) {
             console.error("Error sending audio to server:", error);
@@ -90,10 +118,10 @@ export default function App() {
                 </audio>
             ))}
 
-            {mockConversation
+            {conversation
                 .filter((item) => item.role !== "system") // Exclude 'system' messages
                 .map((item, index) => (
-                    <Message key={index} role={item.role} message={item.message} />
+                    <Message key={index} data={item} />
                 ))}
 
             <AudioInput sendAudioToServer={sendAudioToServer} />
