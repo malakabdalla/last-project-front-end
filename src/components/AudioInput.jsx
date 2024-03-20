@@ -47,10 +47,12 @@ export default function AudioInput({ sendAudioToServer }) {
         }, 1000);
     }
 
+
+
     return (
-        <div className="absolute bottom-20">
+        <div className="fixed bottom-12">
             <button
-                className={`px-4 py-2 text-2xl font-semibold text-white transition-colors duration-200 rounded-lg shadow 
+                className={`px-4 py-2 text-2xl font-semibold text-white transition-colors duration-200 rounded-lg  shadow-[0_20px_50px_rgba(_255,_255,_255,_1)]
                     ${recording
                         ? "bg-red-600 hover:bg-red-700"
                         : "bg-blue-600 hover:bg-blue-700"
