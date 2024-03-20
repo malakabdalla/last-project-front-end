@@ -1,31 +1,6 @@
 import { useState, useEffect } from "react";
 import { AudioInput, Message } from "./components";
 
-// Mock data for the transcribed conversation between the user and the language model
-const mockConversation = [
-    {
-        role: "system",
-        message:
-            "You are a helpful language tutor. Your job is to help the user learn Gujarati...",
-    },
-    {
-        role: "assistant",
-        message:
-            "Hello, welcome to our shared learning space. What brings you here today?",
-        audio: ''
-    },
-    {
-        role: "user",
-        message:
-            "I want to learn Gujarati. I am a beginner and I want to learn the basics.",
-    },
-    {
-        role: "assistant",
-        message:
-            "Great! I can help you with that. Let's start with the basics. Do you know how to say 'hello' in Gujarati?",
-    },
-];
-
 export default function App() {
 
     const [conversation, setConversation] = useState([]);
@@ -33,12 +8,6 @@ export default function App() {
     function addMessageToConversation(messageObject) {
         setConversation((prev) => [...prev, messageObject]);
     }
-
-    function __TEMP__extractUserTranscribedText(userTranscription) {
-        return userTranscription[0].alternatives[0].transcript;
-    }
-
-    const [audios, setAudios] = useState([]);
 
     useEffect(() => {
         console.log(import.meta.env.VITE_BACKEND_URL);
@@ -52,12 +21,6 @@ export default function App() {
             }
         })();
     }, []);
-
-    // function addAudioToAudios(base64String) {
-    //     const audioBlob = base64ToBlob(base64String, 'audio/mpeg');
-    //     const audioURL = URL.createObjectURL(audioBlob);
-    //     setAudios((prev) => [...prev, audioURL]);
-    // }
 
     function base64ToBlob(base64, type) {
         const binaryString = window.atob(base64);
@@ -88,7 +51,7 @@ export default function App() {
             // Add the returned data to the conversation array 
             const userMessage = {
                 role: "user",
-                message: __TEMP__extractUserTranscribedText(data.userTranscription),
+                message: data.userTranscription,
                 audio: URL.createObjectURL(base64ToBlob(data.userAudio, 'audio/mpeg'))
             };
 
@@ -101,22 +64,13 @@ export default function App() {
             addMessageToConversation(userMessage);
             addMessageToConversation(modelMessage);
 
-            // addAudioToAudios(data.modelAudio);
-            // addAudioToAudios(data.userAudio);
-
         } catch (error) {
             console.error("Error sending audio to server:", error);
         }
     }
 
     return (
-        <main className="mt-20 flex flex-col items-center gap-10">
-
-            {audios.map((audio, index) => (
-                <audio key={index} autoPlay controls src={audio}>
-                    Your browser does not support the audio element.
-                </audio>
-            ))}
+        <main className="m-10 flex flex-col items-center gap-10">
 
             {conversation
                 .filter((item) => item.role !== "system") // Exclude 'system' messages
