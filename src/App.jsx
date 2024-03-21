@@ -51,15 +51,31 @@ export default function App() {
             // Add the returned data to the conversation array 
             const userMessage = {
                 role: "user",
-                message: data.userTranscription,
+                messages: {
+                    user_message_english: data.modelTranscription.user_message_english
+                },
                 audio: URL.createObjectURL(base64ToBlob(data.userAudio, 'audio/mpeg'))
             };
 
             const modelMessage = {
                 role: "assistant",
-                message: data.modelTranscription,
+                messages: {
+                    gpt_response_english: data.modelTranscription.gpt_response_english,
+                    gpt_response: data.modelTranscription.gpt_response,
+                    gpt_response_breakdown: data.modelTranscription.gpt_response_breakdown,
+                    suggestions: data.modelTranscription.suggestions
+                },
                 audio: URL.createObjectURL(base64ToBlob(data.modelAudio, 'audio/mpeg'))
             };
+
+            // const modelMessage = {
+            //     role: "assistant",
+            //     message: `${data.modelTranscription.gpt_response_english} <br>
+            //     ${data.modelTranscription.gpt_response} <br>
+            //     ${data.modelTranscription.gpt_response_breakdown}<br>
+            //     ${data.modelTranscription.suggestions}`,
+            //     audio: URL.createObjectURL(base64ToBlob(data.modelAudio, 'audio/mpeg'))
+            // };
 
             addMessageToConversation(userMessage);
             addMessageToConversation(modelMessage);
@@ -71,6 +87,10 @@ export default function App() {
 
     return (
         <main className="m-10 flex flex-col items-center gap-10">
+
+            <h1>Mother Tongue</h1>
+            <h2>Instructions</h2>
+            <p>Imagine you are speaking to your Gujarati grandmother. Start by saying "kemcho", which means "How are you?". If you need help with how to say something, simply ask a question in English. Have fun!</p>
 
             {conversation
                 .filter((item) => item.role !== "system") // Exclude 'system' messages
