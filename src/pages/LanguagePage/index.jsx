@@ -1,5 +1,11 @@
+import LanguageLayout from "../../layouts/LanguageLayout";
+
 function LanguagePage() {
-  return <div>LanguagePage</div>;
+  return (
+    <>
+      <LanguageLayout />
+    </>
+  );
 }
 
 export default LanguagePage;
