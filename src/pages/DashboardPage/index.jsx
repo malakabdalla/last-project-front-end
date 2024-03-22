@@ -1,5 +1,12 @@
-function DashboardPage() {
-  return <div>DashboardPage</div>;
+import ConversationsGrid from "../../components/Grid";
+
+export default function DashboardPage() {
+  return (
+  <>
+    DashboardPage
+    <ConversationsGrid />
+  </>
+  );
 }
 
-export default DashboardPage;
+
