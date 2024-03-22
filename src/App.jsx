@@ -10,12 +10,13 @@ export default function App() {
       <Routes>
         <Route path="/" element={<PageWrapper />}>
           <Route index element={<Pages.LandingPage />} />
-          <Route path="/login" element={<Pages.LoginPage />} />
-          <Route path="/register" element={<Pages.RegisterPage />} />
-          <Route path="/language" element={<Pages.LanguagePage />} />
-          <Route path="/dashboard" element={<Pages.DashboardPage />} />
-          <Route path="/conversation" element={<Pages.ConversationPage />} />
         </Route>
+        <Route path="/login" element={<Pages.LoginPage />} />
+        <Route path="/register" element={<Pages.RegisterPage />} />
+        <Route path="/language" element={<Pages.LanguagePage />} />
+        <Route path="/dashboard" element={<Pages.DashboardPage />} />
+        <Route path="/conversation" element={<Pages.ConversationPage />} />
+
         <Route path="*" element={<Pages.NotFound />} />
       </Routes>
     </ThemeProvider>
