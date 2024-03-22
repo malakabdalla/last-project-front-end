@@ -1,104 +1,23 @@
-import { useState, useEffect } from "react";
-import { AudioInput, Message } from "./components";
+import PageWrapper from "./layouts/PageWrapper/index";
+import { Route, Routes } from "react-router-dom";
+import "./index.css";
+import * as Pages from "./pages";
+import { ThemeProvider } from "./context/ThemeContext";
 
 export default function App() {
-
-    const [conversation, setConversation] = useState([]);
-
-    function addMessageToConversation(messageObject) {
-        setConversation((prev) => [...prev, messageObject]);
-    }
-
-    useEffect(() => {
-        console.log(import.meta.env.VITE_BACKEND_URL);
-        // Make a generic request to the backend to wake up the server
-        (async () => {
-            try {
-                const response = await fetch(import.meta.env.VITE_BACKEND_URL + '/');
-                if (response.status === 200) console.log("Server is available!");
-            } catch (error) {
-                console.error("Error checking server availability:", error);
-            }
-        })();
-    }, []);
-
-    function base64ToBlob(base64, type) {
-        const binaryString = window.atob(base64);
-        const len = binaryString.length;
-        const bytes = new Uint8Array(len);
-        for (let i = 0; i < len; i++) {
-            bytes[i] = binaryString.charCodeAt(i);
-        }
-        return new Blob([bytes], { type });
-    }
-
-    async function sendAudioToServer(audioChunks) {
-        // Prepare the audio data to send to the server
-        const audioBlob = new Blob(audioChunks, { type: "audio/flac" });  // Could change this, but it works so far 
-        const formData = new FormData();
-        formData.append("audio", audioBlob);
-
-        try {
-            console.log("Sending audio to server...");
-            const response = await fetch(import.meta.env.VITE_BACKEND_URL + '/receive', {
-                method: "POST",
-                body: formData,
-            });
-            const data = await response.json();
-
-            console.log("data:", data);
-
-            // Add the returned data to the conversation array 
-            const userMessage = {
-                role: "user",
-                messages: {
-                    user_message_english: data.modelTranscription.user_message_english
-                },
-                audio: URL.createObjectURL(base64ToBlob(data.userAudio, 'audio/mpeg'))
-            };
-
-            const modelMessage = {
-                role: "assistant",
-                messages: {
-                    gpt_response_english: data.modelTranscription.gpt_response_english,
-                    gpt_response: data.modelTranscription.gpt_response,
-                    gpt_response_breakdown: data.modelTranscription.gpt_response_breakdown,
-                    suggestions: data.modelTranscription.suggestions
-                },
-                audio: URL.createObjectURL(base64ToBlob(data.modelAudio, 'audio/mpeg'))
-            };
-
-            // const modelMessage = {
-            //     role: "assistant",
-            //     message: `${data.modelTranscription.gpt_response_english} <br>
-            //     ${data.modelTranscription.gpt_response} <br>
-            //     ${data.modelTranscription.gpt_response_breakdown}<br>
-            //     ${data.modelTranscription.suggestions}`,
-            //     audio: URL.createObjectURL(base64ToBlob(data.modelAudio, 'audio/mpeg'))
-            // };
-
-            addMessageToConversation(userMessage);
-            addMessageToConversation(modelMessage);
-
-        } catch (error) {
-            console.error("Error sending audio to server:", error);
-        }
-    }
-
-    return (
-        <main className="m-10 flex flex-col items-center gap-10">
-
-            <h1>Mother Tongue</h1>
-            <h2>Instructions</h2>
-            <p>Imagine you are speaking to your Gujarati grandmother. Start by saying "kemcho", which means "How are you?". If you need help with how to say something, simply ask a question in English. Have fun!</p>
-
-            {conversation
-                .filter((item) => item.role !== "system") // Exclude 'system' messages
-                .map((item, index) => (
-                    <Message key={index} data={item} />
-                ))}
-
-            <AudioInput sendAudioToServer={sendAudioToServer} />
-        </main>
-    );
+  return (
+    <ThemeProvider>
+      <Routes>
+        <Route path="/" element={<PageWrapper />}>
+          <Route index element={<Pages.LandingPage />} />
+          <Route path="/login" element={<Pages.LoginPage />} />
+          <Route path="/register" element={<Pages.RegisterPage />} />
+          <Route path="/language" element={<Pages.LanguagePage />} />
+          <Route path="/dashboard" element={<Pages.DashboardPage />} />
+          <Route path="/conversation" element={<Pages.ConversationPage />} />
+        </Route>
+        <Route path="*" element={<Pages.NotFound />} />
+      </Routes>
+    </ThemeProvider>
+  );
 }

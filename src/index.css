@@ -1,3 +1,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    margin: 0;
+    transition: background 0.3s linear, color 0.3s linear;
+    padding-top: 0;
+    max-width: 1300px;
+    margin: 0;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    max-width: 1300px;
+
+}
+
+#root {
+    padding: 0;
+    margin: 0;
+    max-width: 1300;
+
+    height: 100vh;
+
+}
+
+
+body.dark {
+    background-color: rgba(7, 0, 82, 1);
+    color: white;
+    margin: 0;
+    transition: background 0.3s linear, color 0.3s linear;
+    padding-top: 0;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-bottom: 0;
+    padding-top: 0;
+    max-width: 1300px;
+
+    margin: 0 auto;
+    padding-bottom: 0;
+    display: block;
+
+}
+
+body.light {
+    background-color: #ffff;
+    color: black;
+    margin: 0;
+    transition: background 0.3s linear, color 0.3s linear;
+    padding-top: 0;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-bottom: 0;
+    padding-top: 0;
+    max-width: 1300px;
+
+    margin: 0 auto;
+    padding-bottom: 0;
+    display: block;
+
+
+}
