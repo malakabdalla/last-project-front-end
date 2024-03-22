@@ -1,5 +1,7 @@
+import RegisterCard from "../../components/registerCard";
+
 function RegisterPage() {
-  return <div>RegisterPage</div>;
+  return <RegisterCard />;
 }
 
 export default RegisterPage;

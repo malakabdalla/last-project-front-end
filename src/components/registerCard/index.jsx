@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 
-function LoginCard() {
+function RegisterCard() {
   return (
     <section>
       <div className="flex bg-white items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-8">
@@ -33,15 +33,8 @@ function LoginCard() {
               <div>
                 <div className="flex items-center justify-between">
                   <label className="text-base font-medium text-gray-900">
-                    Password
+                    UserName
                   </label>
-                  <a
-                    className="text-sm font-semibold text-black hover:underline"
-                    title=""
-                    href="#"
-                  >
-                    Forgot password?
-                  </a>
                 </div>
                 <div className="mt-2">
                   <input
@@ -52,12 +45,28 @@ function LoginCard() {
                 </div>
               </div>
               <div>
-                <button
-                  className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
-                  type="button"
-                >
-                  Continue
-                </button>
+                <div>
+                  <div className="flex items-center justify-between">
+                    <label className="text-base font-medium text-gray-900">
+                      Password
+                    </label>
+                  </div>
+                  <div className="mt-2">
+                    <input
+                      placeholder="Password"
+                      type="password"
+                      className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <button
+                    className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                    type="button"
+                  >
+                    Continue
+                  </button>
+                </div>
               </div>
             </div>
           </form>
@@ -85,4 +94,4 @@ function LoginCard() {
   );
 }
 
-export default LoginCard;
+export default RegisterCard;
