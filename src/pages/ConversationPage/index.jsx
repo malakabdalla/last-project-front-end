@@ -1,15 +1,22 @@
-/* eslint-disable react/no-unescaped-entities */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { AudioInput, Message } from "../../components";
 
 function ConversationPage() {
   const [conversation, setConversation] = useState([]);
   const { id } = useParams();
+  const conversationEndRef = useRef(null);
 
   function addMessageToConversation(messageObject) {
-    setConversation((prev) => [...prev, messageObject]);
+    setConversation(prev => [...prev, messageObject]);
   }
+
+  useEffect(() => {
+    // Scroll to the bottom of the conversation whenever it changes
+    if (conversationEndRef.current) {
+      conversationEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [conversation]);
 
   useEffect(() => {
     console.log(import.meta.env.VITE_BACKEND_URL);
@@ -29,8 +36,7 @@ function ConversationPage() {
     const recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
     const updatedRecentlyViewed = [{ id, timestamp: Date.now() }, ...recentlyViewed.filter(entry => entry.id !== id)].slice(0, 5);
     localStorage.setItem('recentlyViewed', JSON.stringify(updatedRecentlyViewed));
-}, [id]);
-
+  }, [id]);
 
   function base64ToBlob(base64, type) {
     const binaryString = window.atob(base64);
@@ -73,10 +79,10 @@ function ConversationPage() {
       const modelMessage = {
         role: "assistant",
         messages: {
-          gpt_response_english: data.modelTranscription.gpt_response_english? data.modelTranscription.gpt_response_english: "N/A" ,
+          gpt_response_english: data.modelTranscription.gpt_response_english ? data.modelTranscription.gpt_response_english : "N/A",
           gpt_response: data.modelTranscription.gpt_response,
-          gpt_response_breakdown: data.modelTranscription.gpt_response_breakdown? data.modelTranscription.gpt_response_breakdown: "N/A",
-          suggestions: data.modelTranscription.suggestions? data.modelTranscription.suggestions: "N/A" ,
+          gpt_response_breakdown: data.modelTranscription.gpt_response_breakdown ? data.modelTranscription.gpt_response_breakdown : "N/A",
+          suggestions: data.modelTranscription.suggestions ? data.modelTranscription.suggestions : "N/A",
         },
         audio: URL.createObjectURL(base64ToBlob(data.modelAudio, "audio/mpeg")),
       };
@@ -97,10 +103,12 @@ function ConversationPage() {
       </p>
 
       {conversation
-        .filter((item) => item.role !== "system") // Exclude 'system' messages
+        .filter((item) => item.role !== "system")
         .map((item, index) => (
           <Message key={index} data={item} />
         ))}
+      
+      <div ref={conversationEndRef} />
 
       <AudioInput sendAudioToServer={sendAudioToServer} />
     </main>
