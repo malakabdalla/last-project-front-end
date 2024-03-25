@@ -2,14 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-body, #root {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
 
 
-/* body.dark {
+body.dark {
     background-color: rgba(7, 0, 82, 1);
     color: white;
     margin: 0;
@@ -44,4 +39,8 @@ body.light {
     display: block;
 
 
-} */
+}
+
+.page-loaded {
+    background: linear-gradient(to right, rgba(204, 221, 249, 1), rgba(251, 74, 109, 1));
+}
