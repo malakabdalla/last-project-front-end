@@ -50,12 +50,12 @@ export default function NewChatBtn() {
 
     const openModal = () => {
         setShowModal(true);
-        toggleSign(); // Toggles the sign when the button is clicked
+        toggleSign();
     };
 
     const closeModal = () => {
         setShowModal(false);
-        toggleSign(); // Toggle the sign when the modal is closed
+        toggleSign();
     };
 
     return (
