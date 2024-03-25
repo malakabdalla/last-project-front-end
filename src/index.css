@@ -2,29 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+body, #root {
+    width: 100%;
     margin: 0;
-    transition: background 0.3s linear, color 0.3s linear;
-    padding-top: 0;
-    max-width: 1300px;
-    margin: 0;
-    padding-bottom: 0px;
-    padding-top: 0px;
-    max-width: 1300px;
-
-}
-
-#root {
     padding: 0;
-    margin: 0;
-    max-width: 1300;
-
-    height: 100vh;
-
 }
 
 
-body.dark {
+/* body.dark {
     background-color: rgba(7, 0, 82, 1);
     color: white;
     margin: 0;
@@ -59,4 +44,4 @@ body.light {
     display: block;
 
 
-}
+} */
