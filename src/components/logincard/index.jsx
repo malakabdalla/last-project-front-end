@@ -1,11 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/Auth";
+import { useAuth } from "../../context/Auth/index";
 
 import "./loginCard.css";
 function LoginCard() {
-  const { setUser } = useAuth();
+  // const { setUser } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
@@ -19,21 +19,21 @@ function LoginCard() {
     });
   };
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
 
-    const { username, password } = formData;
+  //   const { username, password } = formData;
 
-    const predefinedUsername = "demdemo";
-    const predefinedPassword = "demo123456789";
+  //   const predefinedUsername = "demdemo";
+  //   const predefinedPassword = "demo123456789";
 
-    if (username === predefinedUsername && password === predefinedPassword) {
-      setUser(username);
-      navigate("/language");
-    } else {
-      console.error("Invalid credentials");
-    }
-  }
+  //   if (username === predefinedUsername && password === predefinedPassword) {
+  //     setUser(username);
+  //     navigate("/language");
+  //   } else {
+  //     console.error("Invalid credentials");
+  //   }
+  // }
   return (
     <>
       <div className="login-container">
@@ -83,7 +83,6 @@ function LoginCard() {
                       <button
                         className="inline-flex w-full items-center justify-center rounded-md  px-3.5 py-2.5 font-semibold leading-7 text-white color "
                         type="button"
-                        onClick={handleSubmit}
                       >
                         Continue
                       </button>
