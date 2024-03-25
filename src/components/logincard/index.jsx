@@ -1,6 +1,52 @@
-/* eslint-disable react/no-unescaped-entities */
+import React, { useState } from 'react';
+import { useAuth } from "../../hooks/useAuth";
 
 function LoginCard() {
+  const { login } = useAuth();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async () => {
+    try {
+      const tokenResponse = await fetch('http://localhost:5015/profiles/login', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      if (tokenResponse.ok) {
+        const tokenData = await tokenResponse.json();
+        const userInfoResponse = await fetch(
+          `http://localhost:5015/tokens/${tokenData.token}`,
+          {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const userInfoData = await userInfoResponse.json();
+        const userInfo = {
+          token: tokenData.token,
+          userid: userInfoData.account_id,
+        };
+        await login(userInfo);
+        window.location.href = '/dashboard';
+      } else {
+        const errorData = await userInfoResponse.json();
+        alert(errorData.error || 'An error occurred during login.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred during login.');
+    }
+  };
+
   return (
     <section>
       <div className="flex bg-white items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-8">
@@ -26,6 +72,8 @@ function LoginCard() {
                   <input
                     placeholder="Email"
                     type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                   />
                 </div>
@@ -47,6 +95,8 @@ function LoginCard() {
                   <input
                     placeholder="Password"
                     type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                   />
                 </div>
@@ -55,6 +105,7 @@ function LoginCard() {
                 <button
                   className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                   type="button"
+                  onClick={handleLogin}
                 >
                   Get started
                 </button>
