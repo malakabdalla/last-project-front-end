@@ -1,9 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { AudioInput, Message } from "../../components";
 
 function ConversationPage() {
   const [conversation, setConversation] = useState([]);
+  const { id } = useParams();
 
   function addMessageToConversation(messageObject) {
     setConversation((prev) => [...prev, messageObject]);
@@ -21,6 +23,14 @@ function ConversationPage() {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    // Store the conversation ID and timestamp in local storage
+    const recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+    const updatedRecentlyViewed = [{ id, timestamp: Date.now() }, ...recentlyViewed.filter(entry => entry.id !== id)].slice(0, 5);
+    localStorage.setItem('recentlyViewed', JSON.stringify(updatedRecentlyViewed));
+}, [id]);
+
 
   function base64ToBlob(base64, type) {
     const binaryString = window.atob(base64);
@@ -63,11 +73,10 @@ function ConversationPage() {
       const modelMessage = {
         role: "assistant",
         messages: {
-          gpt_response_english: data.modelTranscription.gpt_response_english,
+          gpt_response_english: data.modelTranscription.gpt_response_english? data.modelTranscription.gpt_response_english: "N/A" ,
           gpt_response: data.modelTranscription.gpt_response,
-          gpt_response_breakdown:
-            data.modelTranscription.gpt_response_breakdown,
-          suggestions: data.modelTranscription.suggestions,
+          gpt_response_breakdown: data.modelTranscription.gpt_response_breakdown? data.modelTranscription.gpt_response_breakdown: "N/A",
+          suggestions: data.modelTranscription.suggestions? data.modelTranscription.suggestions: "N/A" ,
         },
         audio: URL.createObjectURL(base64ToBlob(data.modelAudio, "audio/mpeg")),
       };
@@ -84,9 +93,7 @@ function ConversationPage() {
       <h1>Mother Tongue</h1>
       <h2>Instructions</h2>
       <p>
-        Imagine you are speaking to your Gujarati grandmother. Start by saying
-        "kemcho", which means "How are you?". If you need help with how to say
-        something, simply ask a question in English. Have fun!
+        Welcome to Mother Tongue! A tool to help you learn and practice your Gujarati. Start by saying hello and have fun!
       </p>
 
       {conversation
