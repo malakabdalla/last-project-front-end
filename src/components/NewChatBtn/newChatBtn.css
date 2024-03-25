@@ -63,20 +63,22 @@
 
 .optionBtn:nth-child(1) {
     top: 125px;
-    right: 220px;
+    right: 425px;
 }
 
 .optionBtn:nth-child(2) {
     top: 155px;
-    right: 155px;
+    right: 360px;
 }
 
 .optionBtn:nth-child(3) {
     top: 155px;
-    right: 195px;
+    right: 400px;
 }
 
 .optionBtn:nth-child(4) {
     top: 125px;
-    right: 130px;
+    right: 335px;
 }
+
+/* 25, 40, 25 */
