@@ -1,11 +1,59 @@
+import React, { useState } from 'react';
+import { useAuth } from "../../hooks/useAuth";
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from "react";
 import { Link } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 // import { useAuth } from "../../context/Auth/index";
 
+
 import "./loginCard.css";
 function LoginCard() {
+  
+  const { login } = useAuth();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async () => {
+    try {
+      const tokenResponse = await fetch('http://localhost:5015/profiles/login', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      if (tokenResponse.ok) {
+        const tokenData = await tokenResponse.json();
+        const userInfoResponse = await fetch(
+          `http://localhost:5015/tokens/${tokenData.token}`,
+          {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const userInfoData = await userInfoResponse.json();
+        const userInfo = {
+          token: tokenData.token,
+          userid: userInfoData.account_id,
+        };
+        await login(userInfo);
+        window.location.href = '/user/dashboard';
+      } else {
+        const errorData = await userInfoResponse.json();
+        alert(errorData.error || 'An error occurred during login.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred during login.');
+    }
+  };
+
   // const { setUser } = useAuth();
   // const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -35,6 +83,7 @@ function LoginCard() {
   //     console.error("Invalid credentials");
   //   }
   // }
+  
   return (
     <>
       <div className="login-container">
@@ -97,6 +146,7 @@ function LoginCard() {
                 <button
                   className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
                   type="button"
+                  onClick={handleLogin}
                 >
                   <span className="mr-2 inline-block">
                     <svg
