@@ -4,6 +4,7 @@ import { AudioInput, Message } from "../../components";
 
 function ConversationPage() {
   const [conversation, setConversation] = useState([]);
+  const [isLoading, setIsLoading] = useState(false); // Add loading state
   const { id } = useParams();
   const conversationEndRef = useRef(null);
 
@@ -49,6 +50,7 @@ function ConversationPage() {
   }
 
   async function sendAudioToServer(audioChunks) {
+    setIsLoading(true); // Set loading state to true
     // Prepare the audio data to send to the server
     const audioBlob = new Blob(audioChunks, { type: "audio/flac" }); // Could change this, but it works so far
     const formData = new FormData();
@@ -91,6 +93,8 @@ function ConversationPage() {
       addMessageToConversation(modelMessage);
     } catch (error) {
       console.error("Error sending audio to server:", error);
+    } finally {
+      setIsLoading(false); // Set loading state to false when done
     }
   }
 
@@ -99,9 +103,10 @@ function ConversationPage() {
       <h1>Mother Tongue</h1>
       <h2>Instructions</h2>
       <p>
-        Welcome to Mother Tongue! A tool to help you learn and practice your Gujarati. Start by saying hello and have fun!
+        Welcome to Mother Tongue! A tool to help you learn and practice your Gujarati. Start by saying 'kem cho', a common greeting which means 'How are you?'. Have fun!
       </p>
 
+      
       {conversation
         .filter((item) => item.role !== "system")
         .map((item, index) => (
@@ -109,7 +114,7 @@ function ConversationPage() {
         ))}
       
       <div ref={conversationEndRef} />
-
+      {isLoading && <p>Loading...</p>} {/* Display loading indicator */}
       <AudioInput sendAudioToServer={sendAudioToServer} />
     </main>
   );
