@@ -1,14 +1,16 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
 import { AudioInput, Message } from "../../components";
 
 function ConversationPage() {
   const [conversation, setConversation] = useState([]);
+  const [isLoading, setIsLoading] = useState(false); // Add loading state
   const { id } = useParams();
+  const conversationEndRef = useRef(null);
 
   function addMessageToConversation(messageObject) {
-    setConversation((prev) => [...prev, messageObject]);
+    setConversation(prev => [...prev, messageObject]);
   }
 
   function mockInitialGreeting() {
@@ -22,6 +24,13 @@ function ConversationPage() {
     }
     addMessageToConversation(mockGreetingMessage);
   }
+
+  useEffect(() => {
+    // Scroll to the bottom of the conversation whenever it changes
+    if (conversationEndRef.current) {
+      conversationEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [conversation]);
 
   useEffect(() => {
     console.log(import.meta.env.VITE_BACKEND_URL);
@@ -44,7 +53,6 @@ function ConversationPage() {
     localStorage.setItem('recentlyViewed', JSON.stringify(updatedRecentlyViewed));
   }, [id]);
 
-
   function base64ToBlob(base64, type) {
     const binaryString = window.atob(base64);
     const len = binaryString.length;
@@ -56,6 +64,7 @@ function ConversationPage() {
   }
 
   async function sendAudioToServer(audioChunks) {
+    setIsLoading(true); // Set loading state to true
     // Prepare the audio data to send to the server
     const audioBlob = new Blob(audioChunks, { type: "audio/flac" }); // Could change this, but it works so far
     const formData = new FormData();
@@ -98,6 +107,8 @@ function ConversationPage() {
       addMessageToConversation(modelMessage);
     } catch (error) {
       console.error("Error sending audio to server:", error);
+    } finally {
+      setIsLoading(false); // Set loading state to false when done
     }
   }
 
@@ -118,15 +129,18 @@ function ConversationPage() {
       <h1>Mother Tongue</h1>
       <h2>Instructions</h2>
       <p>
-        Welcome to Mother Tongue! A tool to help you learn and practice your Gujarati. Start by saying hello and have fun!
+        Welcome to Mother Tongue! A tool to help you learn and practice your Gujarati. Start by saying 'kem cho', a common greeting which means 'How are you?'. Have fun!
       </p>
 
+      
       {conversation
-        .filter((item) => item.role !== "system") // Exclude 'system' messages
+        .filter((item) => item.role !== "system")
         .map((item, index) => (
           <Message key={index} data={item} />
         ))}
-
+      
+      <div ref={conversationEndRef} />
+      {isLoading && <p>Loading...</p>} {/* Display loading indicator */}
       <AudioInput sendAudioToServer={sendAudioToServer} />
     </main>
   );
