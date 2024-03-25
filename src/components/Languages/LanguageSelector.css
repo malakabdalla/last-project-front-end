@@ -1,6 +1,6 @@
 .language-selector {
 
-    height: 100vh;
+    /* min-height: 100vh; */
 }
 
 .language-options {
@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    gap: 6rem;
 }
 
 .language-options label {
@@ -33,9 +34,15 @@
     margin-top: 5px;
 }
 
+.flag {
+    outline: 0rem solid white;
+    transition: all 0.3s;   
+}
+
 .selected {
     .flag {
-        border: 2px solid rgb(255, 171, 188);
+        outline: 0.5rem solid white;
+        transition: all 0.3s;   
     }
 
 }

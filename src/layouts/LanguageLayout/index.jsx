@@ -15,7 +15,7 @@ function LanguageLayout() {
   }, []);
   return (
     <>
-      <div className="languagePage">
+      <div className="languagePage min-h-screen bg-gradient-to-br from-pink-100 to-pink-300">
         <LanguageHeading />
         <LanguageSelector />
       </div>
