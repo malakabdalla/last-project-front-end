@@ -18,7 +18,7 @@ function EndSection() {
         </div>
 
         <div>
-          <img className="landingImg3" src="../../../public/landing2.png" />
+          <img className="landingImg3" src="./landing2.png" />
         </div>
       </div>
     </>

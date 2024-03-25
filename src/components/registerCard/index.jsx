@@ -11,10 +11,12 @@ function RegisterCard() {
           <div className="flex bg-white items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-8">
             <div className="xl:mx-auto xl:w-full shadow-md p-4 xl:max-w-sm 2xl:max-w-md">
               <div className="mb-2 flex justify-center"></div>
-              <p className="mt-2 text-center text-sm text-gray-600">
-                <img src="../../../public/MotherTongue.svg" />
-                Mother Tongue
-              </p>
+              <Link to="/">
+                <p className="mt-2 text-center text-sm text-gray-600">
+                  <img src="./MotherTongue.svg" />
+                  Mother Tongue
+                </p>
+              </Link>
               <h2 className="text-center text-2xl font-bold leading-tight text-black">
                 Sign Up to Mother Tongue
               </h2>

@@ -10,10 +10,7 @@ function HeroSection() {
         </p>
       </div>
       <div>
-        <img
-          className="landingImg"
-          src="../../../public/MotherTonguehero.png"
-        />
+        <img className="landingImg" src="./MotherTonguehero.png" />
       </div>
     </div>
   );

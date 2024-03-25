@@ -3,7 +3,7 @@ function MidSection() {
   return (
     <div className="midSection">
       <div>
-        <img className="landingImg2" src="../../../public/landing1.png" />
+        <img className="landingImg2" src="./landing1.png" />
       </div>
       <div className="text">
         <h2 className="second-title">
