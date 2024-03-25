@@ -27,18 +27,17 @@ export default function App() {
                   <PageWrapperAuth />
                 </ProtectedRoute>
               }
-            >
-              <Route path="dashboard" element={<Pages.DashboardPage />} />
-              <Route path="language" element={<Pages.LanguagePage />} />
-              <Route
-                path="allconversations/:id"
-                element={<Pages.AllConversationsPage />}
-              />
-              <Route
-                path="conversation/:id"
-                element={<Pages.ConversationPage />}
-              />
-            </Route>
+            ></Route>
+            <Route path="/dashboard" element={<Pages.DashboardPage />} />
+            <Route path="/language" element={<Pages.LanguagePage />} />
+            <Route
+              path="/allconversations/:id"
+              element={<Pages.AllConversationsPage />}
+            />
+            <Route
+              path="/conversation/:id"
+              element={<Pages.ConversationPage />}
+            />
           </Routes>
         </ConversationsProvider>
       </ThemeProvider>
