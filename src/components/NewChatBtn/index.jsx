@@ -6,6 +6,7 @@ import ModalBtns from "./modalBtns";
 export default function NewChatBtn() {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
+    const [isPlusClicked, setIsPlusClicked] = useState(false);
 
     const handleOptionSelect = async (language) => {
         setShowModal(false);
@@ -43,12 +44,30 @@ export default function NewChatBtn() {
         }
     };
 
+    const toggleSign = () => {
+        setIsPlusClicked(!isPlusClicked);
+    };
+
+    const openModal = () => {
+        setShowModal(true);
+        toggleSign(); // Toggles the sign when the button is clicked
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+        toggleSign(); // Toggle the sign when the modal is closed
+    };
+
     return (
         <>
             <p id="newChat">New Chat</p>
-            <button id="newChatBtn" onClick={() => setShowModal(true)}><div id="plusSign">+</div></button>
+            <button id="newChatBtn" onClick={openModal}>
+                <div id="plusSign">
+                    {isPlusClicked ? '×' : '+'}
+                </div>
+            </button>
             {showModal && (
-                <ModalBtns onClose={() => setShowModal(false)} onSelectOption={handleOptionSelect} />
+                <ModalBtns onClose={closeModal} onSelectOption={handleOptionSelect} />
             )}
         </>
     );
