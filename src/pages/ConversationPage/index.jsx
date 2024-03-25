@@ -11,6 +11,18 @@ function ConversationPage() {
     setConversation((prev) => [...prev, messageObject]);
   }
 
+  function mockInitialGreeting() {
+    const mockGreetingMessage = {
+      role: "assistant",
+      messages: {
+        gpt_response_english: "Hello, welcome to your language learning app! What would you like to do today: practice a conversation, explore vocabularly, or test your pronunciation?",
+      },
+      // The audio file is in `Public/audio/mockk_static_audio.mp3`
+      audio: "/audio/mock_static_audio.mp3",
+    }
+    addMessageToConversation(mockGreetingMessage);
+  }
+
   useEffect(() => {
     console.log(import.meta.env.VITE_BACKEND_URL);
     // Make a generic request to the backend to wake up the server
@@ -22,6 +34,7 @@ function ConversationPage() {
         console.error("Error checking server availability:", error);
       }
     })();
+    mockInitialGreeting();
   }, []);
 
   useEffect(() => {
@@ -29,7 +42,7 @@ function ConversationPage() {
     const recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
     const updatedRecentlyViewed = [{ id, timestamp: Date.now() }, ...recentlyViewed.filter(entry => entry.id !== id)].slice(0, 5);
     localStorage.setItem('recentlyViewed', JSON.stringify(updatedRecentlyViewed));
-}, [id]);
+  }, [id]);
 
 
   function base64ToBlob(base64, type) {
@@ -73,10 +86,10 @@ function ConversationPage() {
       const modelMessage = {
         role: "assistant",
         messages: {
-          gpt_response_english: data.modelTranscription.gpt_response_english? data.modelTranscription.gpt_response_english: "N/A" ,
+          gpt_response_english: data.modelTranscription.gpt_response_english ? data.modelTranscription.gpt_response_english : "N/A",
           gpt_response: data.modelTranscription.gpt_response,
-          gpt_response_breakdown: data.modelTranscription.gpt_response_breakdown? data.modelTranscription.gpt_response_breakdown: "N/A",
-          suggestions: data.modelTranscription.suggestions? data.modelTranscription.suggestions: "N/A" ,
+          gpt_response_breakdown: data.modelTranscription.gpt_response_breakdown ? data.modelTranscription.gpt_response_breakdown : "N/A",
+          suggestions: data.modelTranscription.suggestions ? data.modelTranscription.suggestions : "N/A",
         },
         audio: URL.createObjectURL(base64ToBlob(data.modelAudio, "audio/mpeg")),
       };
