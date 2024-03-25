@@ -7,10 +7,12 @@ import "./dashboard.css"
 
 export default function DashboardPage() {
 
+  const id = sessionStorage.getItem('userid'); 
+
   return (
   <>
     <NewChatBtn />
-    <Link id="link">New Conversations →</Link>
+    <Link id="link" to={`/user/allconversations/${id}`}>New Conversations →</Link>
     <ConversationsGrid />
     <h1>Recently Viewed</h1>
     <RecentConversationsGrid />

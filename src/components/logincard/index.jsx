@@ -36,7 +36,7 @@ function LoginCard() {
           userid: userInfoData.account_id,
         };
         await login(userInfo);
-        window.location.href = '/dashboard';
+        window.location.href = '/user/dashboard';
       } else {
         const errorData = await userInfoResponse.json();
         alert(errorData.error || 'An error occurred during login.');
