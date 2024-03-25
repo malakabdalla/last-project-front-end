@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import LanguageHeading from "../../components/LanguageHeading";
 import LanguageSelector from "../../components/Languages";
+import "./languageLayout.css";
 
 function LanguageLayout() {
   useEffect(() => {
@@ -14,8 +15,10 @@ function LanguageLayout() {
   }, []);
   return (
     <>
-      <LanguageHeading />
-      <LanguageSelector />
+      <div className="languagePage">
+        <LanguageHeading />
+        <LanguageSelector />
+      </div>
     </>
   );
 }

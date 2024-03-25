@@ -1,5 +1,5 @@
 function LanguageHeading() {
-  return <div>Choose a language to practice</div>;
+  return <p className="language-title">Choose a language to practice</p>;
 }
 
 export default LanguageHeading;
