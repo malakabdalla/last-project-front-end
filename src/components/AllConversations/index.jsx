@@ -28,7 +28,7 @@ export default function AllConversationsGrid() {
                 <h1>Conversations in the last 7 days:</h1>
                 <div className='conversation'>
                     {recentConversations.map(conversation => (
-                        <Link key={conversation.conversation_id} to={`/user/conversation/${conversation.conversation_id}`}>
+                        <Link key={conversation.conversation_id} to={`/conversation/${conversation.conversation_id}`}>
                             <ConversationCard conversation={conversation} />
                         </Link>
                     ))}
@@ -38,7 +38,7 @@ export default function AllConversationsGrid() {
                 <h1>Conversations in the last 30 days:</h1>
                 <div className='conversation'>
                     {olderConversations.map(conversation => (
-                        <Link key={conversation.conversation_id} to={`/user/conversation/${conversation.conversation_id}`}>
+                        <Link key={conversation.conversation_id} to={`/conversation/${conversation.conversation_id}`}>
                             <ConversationCard conversation={conversation} />
                         </Link>
                     ))}

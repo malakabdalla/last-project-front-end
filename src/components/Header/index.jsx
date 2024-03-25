@@ -29,12 +29,12 @@ export default function Header() {
     <>
       <div>
         <header className="header">
-          <Link to="/user/dashboard">
+          <Link to="/dashboard">
             <img src={logo} alt="" />
           </Link>
           <nav>
-            {token && <NavLink to="/user/language">Learn Languages</NavLink>}
-            <NavLink to="/user/about">About Us</NavLink>
+            {token && <NavLink to="/language">Learn Languages</NavLink>}
+            <NavLink to="/about">About Us</NavLink>
             {token && (
               <NavLink onClick={handleLogout} to="/login">
                 Logout

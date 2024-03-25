@@ -35,7 +35,7 @@ export default function NewChatBtn() {
 
             if (response.ok) {
                 const { conversation_id } = await response.json();
-                navigate(`/user/conversation/${conversation_id}`);
+                navigate(`/conversation/${conversation_id}`);
             } else {
                 console.error('Failed to create conversation:', response.statusText);
             }

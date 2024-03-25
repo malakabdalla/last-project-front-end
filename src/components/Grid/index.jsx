@@ -12,7 +12,7 @@ export default function ConversationsGrid() {
         <>
             <div className='conversation'>
                 {conversations.slice(0,10).map(conversation => (
-                    <Link key={conversation.conversation_id} to={`/user/conversation/${conversation.conversation_id}`}>
+                    <Link key={conversation.conversation_id} to={`/conversation/${conversation.conversation_id}`}>
                         <ConversationCard conversation={conversation}/>
                     </Link>
                 ))}

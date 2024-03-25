@@ -9,7 +9,7 @@ export default function AllConversationsPage() {
   return (
     <div id="allconversations">
         <div id='container'>
-            <Link to='/user/dashboard'>← Dashboard</Link>
+            <Link to='/dashboard'>← Dashboard</Link>
         </div>
         <NewChatBtn />
         <AllConversationsGrid />
