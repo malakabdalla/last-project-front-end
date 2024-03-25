@@ -1,17 +1,37 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../../../Public/MotherTongue.svg";
+import { useAuth } from "../../hooks/useAuth";
 import "./header.css";
 
 export default function Header() {
+  const { token, logout } = useAuth()
+
+  const handleLogout = async (e) => {
+    e.preventDefault()
+    try {
+      const options = {
+        method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ token: token })
+      }
+      const response = await fetch(`http://localhost:5015/tokens/${token}`, options)
+      await logout()
+    }
+    catch(error){
+      console.error("Error:", error)
+    }
+  }
   return (
     <>
         <header className="header">
-            <img src={logo} alt="" />
+            <Link to="/user/dashboard"><img src={logo} alt="" /></Link>
             <nav>
-                <NavLink to="/auth/language">Learn Languages</NavLink>
-                <NavLink to="/auth/about">About Us</NavLink>
-                <NavLink to="/login">Logout</NavLink>
+                {token && <NavLink to="/user/language">Learn Languages</NavLink>}
+                <NavLink to="/user/about">About Us</NavLink>
+                {token && <NavLink onClick={handleLogout} to="/login">Logout</NavLink>}
             </nav>
         </header>
         <Outlet />
