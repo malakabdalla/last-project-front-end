@@ -7,10 +7,12 @@ import "./allconversations.css"
 export default function AllConversationsPage() {
 
   return (
-    <div id="convo">
-    <Link></Link>
-    <NewChatBtn />
-    <AllConversationsGrid />
+    <div id="allconversations">
+        <div id='container'>
+            <Link to='/user/dashboard'>← Dashboard</Link>
+        </div>
+        <NewChatBtn />
+        <AllConversationsGrid />
     </div>
   );
 }
