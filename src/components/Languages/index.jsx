@@ -9,7 +9,6 @@ const LanguageSelector = () => {
 
   return (
     <div className="language-selector">
-      <h2>Select a Language:</h2>
       <div className="language-options">
         <label
           htmlFor="Arabic"

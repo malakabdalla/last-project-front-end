@@ -1,0 +1,24 @@
+.link {
+    font-weight: bold;
+}
+
+.color {
+    background-color: rgba(251, 74, 109, 1);
+}
+
+.color:hover {
+    background-color: rgb(153, 35, 59);
+}
+
+.gradient-background {
+    background: linear-gradient(to right, rgba(204, 221, 249, 1), rgba(251, 74, 109, 1));
+
+    width: 1000px;
+    height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: row;
+
+}

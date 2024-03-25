@@ -1,8 +1,31 @@
 .heroSection {
     display: flex;
     flex-direction: row;
+    column-gap: 10px;
     position: relative;
     align-items: center;
     justify-content: center;
     height: 100vh;
+}
+
+.title {
+    font-size: 50px;
+    font-weight: bold;
+    background: linear-gradient(to right, rgba(251, 74, 109, 1), rgba(5, 0, 1, 1));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 40px;
+}
+
+.para {
+    max-width: 350px;
+    max-height: 200px;
+    overflow: hidden;
+    font-size: 20px;
+}
+
+.landingImg {
+    height: 600px;
+    width: 600px;
 }
