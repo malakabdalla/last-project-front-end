@@ -16,7 +16,7 @@ function LoginCard() {
 
   const handleLogin = async () => {
     try {
-      const tokenResponse = await fetch('http://localhost:5015/profiles/login', {
+      const tokenResponse = await fetch('http://localhost:3000/profiles/login', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -28,7 +28,7 @@ function LoginCard() {
       if (tokenResponse.ok) {
         const tokenData = await tokenResponse.json();
         const userInfoResponse = await fetch(
-          `http://localhost:5015/tokens/${tokenData.token}`,
+          `http://localhost:3000/tokens/${tokenData.token}`,
           {
             method: "GET",
             headers: {

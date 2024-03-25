@@ -17,7 +17,7 @@ export default function Header() {
         },
         body: JSON.stringify({ token: token })
       }
-      const response = await fetch(`http://localhost:5015/tokens/${token}`, options)
+      const response = await fetch(`http://localhost:3000/tokens/${token}`, options)
       await logout()
     }
     catch(error){
