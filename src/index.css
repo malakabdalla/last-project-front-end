@@ -42,5 +42,6 @@ body.light {
 }
 
 .page-loaded {
-    background: linear-gradient(to right, rgba(204, 221, 249, 1), rgba(251, 74, 109, 1));
+    height: 100vh;
+    background: linear-gradient(135deg, rgba(220, 234, 255, 0.644) 25%, rgba(255, 146, 168, 0.712) 100%);
 }
