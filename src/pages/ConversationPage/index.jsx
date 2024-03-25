@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { AudioInput, Message } from "../../components";
 
 function ConversationPage() {
@@ -103,6 +103,18 @@ function ConversationPage() {
 
   return (
     <main className="m-10 flex flex-col items-center gap-10">
+
+      <nav className="w-full flex justify-start">
+        <NavLink to="/dashboard">
+          <span className="flex pl-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <svg id="icon-keyboard_arrow_left" viewBox="0 0 24 24" className="w-6 fill-white">
+              <path d="M15.422 16.594l-1.406 1.406-6-6 6-6 1.406 1.406-4.594 4.594z"></path>
+            </svg>
+            Dashboard
+          </span>
+        </NavLink>
+      </nav>
+      
       <h1>Mother Tongue</h1>
       <h2>Instructions</h2>
       <p>
