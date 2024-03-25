@@ -7,28 +7,25 @@ const PageWrapper = () => {
   return (
     <>
       <div>
-        <nav>
-          <div>
-            <NavLink to="/">
+        <nav className="navigation">
+          <div className="logo-scroll">
+            <NavLink className="logo" to="/">
               <img
                 src="../../../public/MotherTongue.svg"
                 alt="Mother Tongue Logo"
               />
             </NavLink>
+
+            <Link className="scrollBtn" to="Learn" smooth={true} duration={500}>
+              <button>Learn Languages</button>
+            </Link>
+            <Link className="scrollBtn" to="about" smooth={true} duration={500}>
+              <button>About Us</button>
+            </Link>
           </div>
-          <ul>
-            <div>
-              <Link to="Learn" smooth={true} duration={500}>
-                <button>Learn Languages</button>
-              </Link>
-              <Link to="about" smooth={true} duration={500}>
-                <button>About Us</button>
-              </Link>
-              <NavLink to="/login">
-                <button>Get Started</button>
-              </NavLink>
-            </div>
-          </ul>
+          <NavLink to="/login">
+            <button className="loginBtn">Get Started</button>
+          </NavLink>
         </nav>
       </div>
       <Outlet />

@@ -1,0 +1,30 @@
+.navigation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.logo-scroll {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.logo {
+    margin-right: 120px;
+}
+
+.scrollBtn {
+    margin: 30px;
+}
+
+.loginBtn {
+    background-color: rgba(251, 74, 109, 1);
+    padding: 10px 60px;
+    font-size: 20px;
+    border-radius: 20px;
+    color: #ffff;
+}

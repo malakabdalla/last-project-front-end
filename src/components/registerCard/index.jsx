@@ -1,40 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from "react";
+
 import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
-// import { useAuth } from "../../context/Auth/index";
-
-import "./loginCard.css";
-function LoginCard() {
-  // const { setUser } = useAuth();
-  // const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
-
-  //   const { username, password } = formData;
-
-  //   const predefinedUsername = "demdemo";
-  //   const predefinedPassword = "demo123456789";
-
-  //   if (username === predefinedUsername && password === predefinedPassword) {
-  //     setUser(username);
-  //     navigate("/language");
-  //   } else {
-  //     console.error("Invalid credentials");
-  //   }
-  // }
+import "./registerCard.css";
+function RegisterCard() {
   return (
     <>
       <div className="login-container">
@@ -50,12 +18,12 @@ function LoginCard() {
                 </p>
               </Link>
               <h2 className="text-center text-2xl font-bold leading-tight text-black">
-                Sign in to your account
+                Sign Up to Mother Tongue
               </h2>
               <p className="mt-2 text-center text-sm text-gray-600">
                 Don't have an account?
-                <Link to="/register">
-                  <span className="link">Sign UP</span>
+                <Link to="/login">
+                  <span className="link">Sign In</span>
                 </Link>
               </p>
               <form className="mt-8" method="POST" action="#">
@@ -63,10 +31,9 @@ function LoginCard() {
                   <div>
                     <div className="mt-2">
                       <input
-                        placeholder="Username"
+                        placeholder="Email"
                         type="email"
                         className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -75,21 +42,32 @@ function LoginCard() {
                     <div className="mt-2">
                       <input
                         placeholder="Password"
-                        type="Password"
-                        className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-4 py-2 text-sm placeholder:text-gray-400 placeholder-opacity-50 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                        onChange={handleChange}
+                        type="password"
+                        className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                       />
                     </div>
                   </div>
                   <div>
-                    <Link to="/language">
-                      <button
-                        className="inline-flex w-full items-center justify-center rounded-md  px-3.5 py-2.5 font-semibold leading-7 text-white color "
-                        type="button"
-                      >
-                        Continue
-                      </button>
-                    </Link>
+                    <div>
+                      <div className="flex items-center justify-between"></div>
+                      <div className="mt-2">
+                        <input
+                          placeholder="Password"
+                          type="password"
+                          className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Link to="/login">
+                        <button
+                          className="inline-flex w-full items-center justify-center rounded-md  px-3.5 py-2.5 font-semibold leading-7 text-white color"
+                          type="button"
+                        >
+                          Continue
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </form>
@@ -113,15 +91,10 @@ function LoginCard() {
               </div>
             </div>
           </div>
-          <div className="demo-account">
-            <p className="para-login">Demo Account:</p>
-            <p className="para-login"> Username: demdemo</p>
-            <p className="para-login">Password: demo123456789</p>
-          </div>
         </section>
       </div>
     </>
   );
 }
 
-export default LoginCard;
+export default RegisterCard;
