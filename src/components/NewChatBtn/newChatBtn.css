@@ -1,0 +1,82 @@
+#newChat {
+    margin-left: 91.8%;
+    width: 45px;
+    height: 15px;
+    border: none;
+    color: black;
+    font-size: 10px;
+}
+
+#newChatBtn {
+    position: relative;
+    margin-left: 92%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: red;
+    border: none;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+#plusSign {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -56%);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.optionBtn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: palevioletred;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.optionBtn:nth-child(1) {
+    top: 125px;
+    right: 220px;
+}
+
+.optionBtn:nth-child(2) {
+    top: 155px;
+    right: 155px;
+}
+
+.optionBtn:nth-child(3) {
+    top: 155px;
+    right: 195px;
+}
+
+.optionBtn:nth-child(4) {
+    top: 125px;
+    right: 130px;
+}
