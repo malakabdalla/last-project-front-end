@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
 /* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 // import { useAuth } from "../../context/Auth/index";
 
-
 import "./loginCard.css";
 function LoginCard() {
-  
+  useEffect(() => {
+    // Add class to body element when component mounts
+    document.body.classList.add("page-loaded");
+
+    // Cleanup function to remove the class when component unmounts
+    return () => {
+      document.body.classList.remove("page-loaded");
+    };
+  }, []);
   const { login } = useAuth();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
     try {
@@ -43,14 +50,14 @@ function LoginCard() {
           userid: userInfoData.account_id,
         };
         await login(userInfo);
-        window.location.href = '/user/dashboard';
+        window.location.href = "/user/dashboard";
       } else {
         const errorData = await userInfoResponse.json();
-        alert(errorData.error || 'An error occurred during login.');
+        alert(errorData.error || "An error occurred during login.");
       }
     } catch (error) {
-      console.error('Error:', error);
-      alert('An error occurred during login.');
+      console.error("Error:", error);
+      alert("An error occurred during login.");
     }
   };
   

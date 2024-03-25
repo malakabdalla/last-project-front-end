@@ -1,12 +1,20 @@
 /* eslint-disable react/no-unescaped-entities */
-
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./registerCard.css";
 function RegisterCard() {
+  useEffect(() => {
+    // Add class to body element when component mounts
+    document.body.classList.add("page-loaded");
+
+    // Cleanup function to remove the class when component unmounts
+    return () => {
+      document.body.classList.remove("page-loaded");
+    };
+  }, []);
   return (
     <>
       <div className="login-container">
-        <div className="gradient-background"> </div>
         <section>
           <div className="flex bg-white items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-8">
             <div className="xl:mx-auto xl:w-full shadow-md p-4 xl:max-w-sm 2xl:max-w-md">
