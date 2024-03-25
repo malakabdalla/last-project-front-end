@@ -1,21 +1,22 @@
+import "./midSection.css";
 function MidSection() {
   return (
-    <div>
+    <div className="midSection">
       <div>
-        <img />
+        <img className="landingImg2" src="./landing1.png" />
       </div>
-      <div>
-        <h2>
+      <div className="text">
+        <h2 className="second-title">
           Experience language learning like never before with our unique voice
           interaction feature.
         </h2>
         <div>
-          <p>
+          <p className="small-para">
             Mother Tongue revolutionizes language learning by allowing you to
             interact with our service using your voice. No more boring textbooks
             or repetitive exercises!
           </p>
-          <ul>
+          <ul className="unordered-list">
             <li>
               Immerse yourself in authentic conversations and improve
               pronunciation.
