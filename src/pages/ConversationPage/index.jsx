@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { NavLink, useParams } from "react-router-dom";
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AudioInput, Message } from "../../components";
 
 function ConversationPage() {
