@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useEffect } from "react";
 
 export default function Message({ data }) {
@@ -33,20 +32,19 @@ export default function Message({ data }) {
 
             <div className={`mt-1 p-4 ${bubbleColor} rounded-lg shadow-sm`}>
 
-            {/* Needs to be conditionall rendered: if role === 'user' then messages.user_message_english -- else if role === 'assistant' then messages.gpt_response_english  */}
                 <p className="">{role === 'user' ? messages.user_message_english : messages.gpt_response_english}</p>
-                {/* <p className="">{message}</p> */}
 
-                {/* If role === 'assistant', then render these items: 
-                    messages.gpt_response
-                    messages.gpt_response_breakdown
-                    messages.suggestions
-                 */}
                 {role === 'assistant' && (
                     <ul className="mt-2 flex flex-col gap-2">
-                        <li className="text-sm text-gray-800 list-disc ml-6"><span className="italic text-gray-600">Gujarati: </span> {messages.gpt_response}</li>
-                        <li className="text-sm text-gray-800 list-disc ml-6"><span className="italic text-gray-600">Breakdown:  </span>{messages.gpt_response_breakdown}</li>
-                        <li className="text-sm text-gray-800 list-disc ml-6"><span className="italic text-gray-600">Suggestions: </span> {messages.suggestions}</li>
+                        {messages.gpt_response && (
+                            <li className="text-sm text-gray-800 list-disc ml-6"><span className="italic text-gray-600">Gujarati: </span> {messages.gpt_response}</li>
+                        )}
+                        {messages.gpt_response_breakdown && (
+                            <li className="text-sm text-gray-800 list-disc ml-6"><span className="italic text-gray-600">Breakdown:  </span>{messages.gpt_response_breakdown}</li>
+                        )}
+                        {messages.suggestions && (
+                            <li className="text-sm text-gray-800 list-disc ml-6"><span className="italic text-gray-600">Suggestions: </span> {messages.suggestions}</li>
+                        )}
                     </ul>
                 )}
 
