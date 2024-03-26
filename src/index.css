@@ -51,4 +51,5 @@ body.light {
 .page-loaded {
     height: 100vh;
     /* background: linear-gradient(135deg, rgba(220, 234, 255, 0.644) 25%, rgba(255, 146, 168, 0.712) 100%); */
+    background-image: linear-gradient(to bottom right, #f7d6e0, #f9a8d4);
 }
