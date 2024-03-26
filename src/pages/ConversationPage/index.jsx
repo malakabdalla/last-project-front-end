@@ -17,7 +17,7 @@ function ConversationPage() {
     const mockGreetingMessage = {
       role: "assistant",
       messages: {
-        gpt_response_english: "Hello, welcome to your language learning app! What would you like to do today: practice a conversation, explore vocabularly, or test your pronunciation?",
+        gpt_response_english: `Hello, welcome to your conversation practice! To start, say "kem cho", which means "How are you?" `,
       },
       // The audio file is in `Public/audio/mockk_static_audio.mp3`
       audio: "/audio/mock_static_audio.mp3",
