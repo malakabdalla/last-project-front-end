@@ -113,7 +113,7 @@ function ConversationPage() {
   }
 
   return (
-    <main className="mx-10 mt-6 flex flex-col items-center gap-10">
+    <main className="mx-10 mt-6 mb-8 flex flex-col items-center gap-10">
 
       <nav className="w-full flex justify-start">
         <NavLink to="/dashboard">
