@@ -10,15 +10,15 @@ export default function DashboardPage() {
 
   return (
     <div id="dashboard">
-      <NewChatBtn />
-      <div>
-        <Link id="link" to={`/allconversations/${id}`}>
-          New Conversations →
-        </Link>
+      <div className="flex justify-between">
+        <h2 className="text-3xl font-bold text-rose-500">
+          Recent conversations
+        </h2>
+        <NewChatBtn />
       </div>
       <ConversationsGrid />
-      <h1>Recently Viewed</h1>
-      <RecentConversationsGrid />
+      {/* <h1>Recently Viewed</h1>
+      <RecentConversationsGrid /> */}
     </div>
   );
 }

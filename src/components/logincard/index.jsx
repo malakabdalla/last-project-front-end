@@ -62,11 +62,11 @@ function LoginCard() {
   };
   
   return (
-    <div className="login-container">
+    <div className="login-container content-center">
     {/* <div className="gradient-background"> </div> */}
     <section>
-      <div className="flex bg-white items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-8">
-        <div className="xl:mx-auto xl:w-full shadow-md p-4 xl:max-w-sm 2xl:max-w-md">
+      <div className="flex  items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-8">
+        <div className="xl:mx-auto xl:w-full shadow-md p-10 xl:max-w-sm 2xl:max-w-md bg-white rounded-lg">
           <div className="mb-2 flex justify-center"></div>
           <Link to="/">
                 <p className="mt-2 text-center text-sm text-gray-600">
@@ -80,7 +80,7 @@ function LoginCard() {
           <p className="mt-2 text-center text-sm text-gray-600">
             Don't have an account?
             <Link to="/register">
-                  <span className="link">Sign UP</span>
+                  <span className="link"> Sign Up</span>
             </Link>
           </p>
           <form className="mt-8" onSubmit={handleLogin}>

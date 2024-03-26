@@ -48,7 +48,7 @@ export default function AudioInput({ sendAudioToServer }) {
   }
 
   return (
-    <div className="fixed bottom-12">
+    <div className="fixed bottom-20">
       <button
         className={`px-4 py-2 text-2xl font-semibold text-white transition-colors duration-200 rounded-lg  shadow-[0_20px_50px_rgba(_255,_255,_255,_1)]
                     ${

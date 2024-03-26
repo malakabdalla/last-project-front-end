@@ -9,7 +9,48 @@ function ConversationPage() {
   const { id } = useParams();
   const conversationEndRef = useRef(null);
 
-  // For demo purp
+  /* --- Hacky code for demo purposes ¯\_(ツ)_/¯  -- */
+  const mockPreviousConvo = true;
+
+  function addMockPreviousConvoData() {
+    let mockMessage = {
+      role: "user",
+      messages: {
+        user_message_english:
+          "I'd like to learn more about the language please",
+      },
+      audio: "/audio/convo3.mp3",
+    };
+    addMessageToConversation(mockMessage);
+    mockMessage = {
+      role: "assistant",
+      messages: {
+        gpt_response_english: "What would you like to learn about?",
+      },
+      audio: "/audio/convo1.mp3",
+    };
+    addMessageToConversation(mockMessage);
+    mockMessage = {
+      role: "user",
+      messages: {
+        user_message_english:
+          "Can we learn about words related to food please?",
+      },
+      audio: "/audio/convo4.mp3",
+    };
+
+    addMessageToConversation(mockMessage);
+    mockMessage = {
+      role: "assistant",
+      messages: {
+        gpt_response_english:
+          "Absolutely, here are some common words related to food in Gujarati: 1. Food: ખોરાક (Khōrāka) 2. Bread: રોટલી (Rōṭlī) 3. Rice: ચોખા (Chokhā) 4. Milk: દૂધ (Dūdha)",
+      },
+      audio: "/audio/convo2.mp3",
+    };
+    addMessageToConversation(mockMessage);
+  }
+  /* -----  */
 
   function addMessageToConversation(messageObject) {
     setConversation((prev) => [...prev, messageObject]);
@@ -20,7 +61,7 @@ function ConversationPage() {
       role: "assistant",
       messages: {
         gpt_response_english:
-          "Hello, welcome to your language learning app! What would you like to do today: practice a conversation, explore vocabularly, or test your pronunciation?",
+          "Welcome to Mother Tongue! Would you like to practise a life-like conversation, or learn more about the Gujarati language?",
       },
       // The audio file is in `Public/audio/mockk_static_audio.mp3`
       audio: "/audio/mock_static_audio.mp3",
@@ -47,6 +88,8 @@ function ConversationPage() {
       }
     })();
     mockInitialGreeting();
+
+    if (mockPreviousConvo) addMockPreviousConvoData();
   }, []);
 
   useEffect(() => {
@@ -131,7 +174,7 @@ function ConversationPage() {
   }
 
   return (
-    <main className="m-10 flex flex-col items-center gap-10">
+    <main className="mx-10 mt-6 mb-8 flex flex-col items-center gap-10 mx-auto">
       <nav className="w-full flex justify-start">
         <NavLink to="/dashboard">
           <span className="flex pl-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -146,17 +189,44 @@ function ConversationPage() {
           </span>
         </NavLink>
       </nav>
-      <h1>Mother Tongue</h1>
-      <h2>Instructions</h2>
-      <p>
-        Welcome to Mother Tongue! A tool to help you learn and practice your
-        Gujarati. Start by saying 'kem cho', a common greeting which means 'How
-        are you?'. Have fun!
-      </p>
+      {/* CSS Animation */}
+      <style>
+        {`
+          @keyframes growShrink {
+            0%, 100% {
+              transform: scale(1);
+              filter: hue-rotate(0deg);
+              
+            }
+            50% {
+              transform: scale(1.1);
+              filter: hue-rotate(360deg);
+
+            }
+          }
+        `}
+      </style>
+      <div className={`w-40 ${isLoading ? "animate-pulse" : ""}`}>
+        <img
+          src="/colourful-circle.png"
+          alt="Colourful blob"
+          className="w-full"
+          style={{
+            animation: isLoading
+              ? "growShrink 2s ease-in-out infinite"
+              : "none",
+            transition: "transform 0.5s ease-out",
+          }}
+        />
+      </div>
       {conversation
         .filter((item) => item.role !== "system")
         .map((item, index) => (
-          <Message key={index} data={item} />
+          <Message
+            key={index}
+            data={item}
+            mockPreviousConvo={mockPreviousConvo}
+          />
         ))}
       <div ref={conversationEndRef} />
       {isLoading && <p>Loading...</p>} {/* Display loading indicator */}
