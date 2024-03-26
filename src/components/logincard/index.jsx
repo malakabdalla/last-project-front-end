@@ -63,7 +63,7 @@ function LoginCard() {
   
   return (
     <div className="login-container">
-    <div className="gradient-background"> </div>
+    {/* <div className="gradient-background"> </div> */}
     <section>
       <div className="flex bg-white items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-8">
         <div className="xl:mx-auto xl:w-full shadow-md p-4 xl:max-w-sm 2xl:max-w-md">
