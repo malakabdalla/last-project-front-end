@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
-import { NavLink, useParams } from 'react-router-dom';
-import React, { useState, useEffect, useRef } from 'react';
+import { NavLink, useParams } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
 import { AudioInput, Message } from "../../components";
 
 function ConversationPage() {
@@ -9,26 +9,29 @@ function ConversationPage() {
   const { id } = useParams();
   const conversationEndRef = useRef(null);
 
+  // For demo purp
+
   function addMessageToConversation(messageObject) {
-    setConversation(prev => [...prev, messageObject]);
+    setConversation((prev) => [...prev, messageObject]);
   }
 
   function mockInitialGreeting() {
     const mockGreetingMessage = {
       role: "assistant",
       messages: {
-        gpt_response_english: "Hello, welcome to your language learning app! What would you like to do today: practice a conversation, explore vocabularly, or test your pronunciation?",
+        gpt_response_english:
+          "Hello, welcome to your language learning app! What would you like to do today: practice a conversation, explore vocabularly, or test your pronunciation?",
       },
       // The audio file is in `Public/audio/mockk_static_audio.mp3`
       audio: "/audio/mock_static_audio.mp3",
-    }
+    };
     addMessageToConversation(mockGreetingMessage);
   }
 
   useEffect(() => {
     // Scroll to the bottom of the conversation whenever it changes
     if (conversationEndRef.current) {
-      conversationEndRef.current.scrollIntoView({ behavior: 'smooth' });
+      conversationEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [conversation]);
 
@@ -48,9 +51,16 @@ function ConversationPage() {
 
   useEffect(() => {
     // Store the conversation ID and timestamp in local storage
-    const recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
-    const updatedRecentlyViewed = [{ id, timestamp: Date.now() }, ...recentlyViewed.filter(entry => entry.id !== id)].slice(0, 5);
-    localStorage.setItem('recentlyViewed', JSON.stringify(updatedRecentlyViewed));
+    const recentlyViewed =
+      JSON.parse(localStorage.getItem("recentlyViewed")) || [];
+    const updatedRecentlyViewed = [
+      { id, timestamp: Date.now() },
+      ...recentlyViewed.filter((entry) => entry.id !== id),
+    ].slice(0, 5);
+    localStorage.setItem(
+      "recentlyViewed",
+      JSON.stringify(updatedRecentlyViewed)
+    );
   }, [id]);
 
   function base64ToBlob(base64, type) {
@@ -95,10 +105,18 @@ function ConversationPage() {
       const modelMessage = {
         role: "assistant",
         messages: {
-          gpt_response_english: data.modelTranscription.gpt_response_english ? data.modelTranscription.gpt_response_english : data.modelTranscription.gpt_response,
-          gpt_response: data.modelTranscription.gpt_response_english? data.modelTranscription.gpt_response: data.modelTranscription.gpt_response_english,
-          gpt_response_breakdown: data.modelTranscription.gpt_response_breakdown ? data.modelTranscription.gpt_response_breakdown : "",
-          suggestions: data.modelTranscription.suggestions ? data.modelTranscription.suggestions : "",
+          gpt_response_english: data.modelTranscription.gpt_response_english
+            ? data.modelTranscription.gpt_response_english
+            : data.modelTranscription.gpt_response,
+          gpt_response: data.modelTranscription.gpt_response_english
+            ? data.modelTranscription.gpt_response
+            : data.modelTranscription.gpt_response_english,
+          gpt_response_breakdown: data.modelTranscription.gpt_response_breakdown
+            ? data.modelTranscription.gpt_response_breakdown
+            : "",
+          suggestions: data.modelTranscription.suggestions
+            ? data.modelTranscription.suggestions
+            : "",
         },
         audio: URL.createObjectURL(base64ToBlob(data.modelAudio, "audio/mpeg")),
       };
@@ -114,31 +132,32 @@ function ConversationPage() {
 
   return (
     <main className="m-10 flex flex-col items-center gap-10">
-
       <nav className="w-full flex justify-start">
         <NavLink to="/dashboard">
           <span className="flex pl-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            <svg id="icon-keyboard_arrow_left" viewBox="0 0 24 24" className="w-6 fill-white">
+            <svg
+              id="icon-keyboard_arrow_left"
+              viewBox="0 0 24 24"
+              className="w-6 fill-white"
+            >
               <path d="M15.422 16.594l-1.406 1.406-6-6 6-6 1.406 1.406-4.594 4.594z"></path>
             </svg>
             Dashboard
           </span>
         </NavLink>
       </nav>
-      
       <h1>Mother Tongue</h1>
       <h2>Instructions</h2>
       <p>
-        Welcome to Mother Tongue! A tool to help you learn and practice your Gujarati. Start by saying 'kem cho', a common greeting which means 'How are you?'. Have fun!
+        Welcome to Mother Tongue! A tool to help you learn and practice your
+        Gujarati. Start by saying 'kem cho', a common greeting which means 'How
+        are you?'. Have fun!
       </p>
-
-      
       {conversation
         .filter((item) => item.role !== "system")
         .map((item, index) => (
           <Message key={index} data={item} />
         ))}
-      
       <div ref={conversationEndRef} />
       {isLoading && <p>Loading...</p>} {/* Display loading indicator */}
       <AudioInput sendAudioToServer={sendAudioToServer} />
