@@ -95,10 +95,10 @@ function ConversationPage() {
       const modelMessage = {
         role: "assistant",
         messages: {
-          gpt_response_english: data.modelTranscription.gpt_response_english ? data.modelTranscription.gpt_response_english : "N/A",
-          gpt_response: data.modelTranscription.gpt_response,
-          gpt_response_breakdown: data.modelTranscription.gpt_response_breakdown ? data.modelTranscription.gpt_response_breakdown : "N/A",
-          suggestions: data.modelTranscription.suggestions ? data.modelTranscription.suggestions : "N/A",
+          gpt_response_english: data.modelTranscription.gpt_response_english ? data.modelTranscription.gpt_response_english : data.modelTranscription.gpt_response,
+          gpt_response: data.modelTranscription.gpt_response_english? data.modelTranscription.gpt_response: data.modelTranscription.gpt_response_english,
+          gpt_response_breakdown: data.modelTranscription.gpt_response_breakdown ? data.modelTranscription.gpt_response_breakdown : "",
+          suggestions: data.modelTranscription.suggestions ? data.modelTranscription.suggestions : "",
         },
         audio: URL.createObjectURL(base64ToBlob(data.modelAudio, "audio/mpeg")),
       };
