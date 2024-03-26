@@ -14,10 +14,10 @@ export default function Header() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ token: token }),
+        body: JSON.stringify({ token: token })
       };
       const response = await fetch(
-        `http://localhost:5015/tokens/${token}`,
+        `http://localhost:3000/tokens/${token}`,
         options
       );
       await logout();
@@ -29,12 +29,12 @@ export default function Header() {
     <>
       <div>
         <header className="header">
-          <Link to="/user/dashboard">
+          <Link to="/dashboard">
             <img src={logo} alt="" />
           </Link>
           <nav>
-            {token && <NavLink to="/user/language">Learn Languages</NavLink>}
-            <NavLink to="/user/about">About Us</NavLink>
+            {token && <NavLink to="/language">Learn Languages</NavLink>}
+            <NavLink to="/about">About Us</NavLink>
             {token && (
               <NavLink onClick={handleLogout} to="/login">
                 Logout

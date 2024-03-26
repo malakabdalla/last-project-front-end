@@ -12,7 +12,7 @@ export default function DashboardPage() {
     <div id="dashboard">
       <NewChatBtn />
       <div>
-        <Link id="link" to={`/user/allconversations/${id}`}>
+        <Link id="link" to={`/allconversations/${id}`}>
           New Conversations →
         </Link>
       </div>

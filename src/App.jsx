@@ -20,24 +20,13 @@ export default function App() {
             </Route>
             <Route path="/login" element={<Pages.LoginPage />} />
             <Route path="/register" element={<Pages.RegisterPage />} />
-            <Route
-              path="/user"
-              element={
-                <ProtectedRoute>
-                  <PageWrapperAuth />
-                </ProtectedRoute>
-              }
-            ></Route>
-            <Route path="/dashboard" element={<Pages.DashboardPage />} />
-            <Route path="/language" element={<Pages.LanguagePage />} />
-            <Route
-              path="/allconversations/:id"
-              element={<Pages.AllConversationsPage />}
-            />
-            <Route
-              path="/conversation/:id"
-              element={<Pages.ConversationPage />}
-            />
+            <Route element={<ProtectedRoute><PageWrapperAuth /></ProtectedRoute>}>
+              <Route index element={<Pages.DashboardPage />} />
+              <Route path="dashboard" element={<Pages.DashboardPage />} />
+              <Route path="language" element={<Pages.LanguagePage />} />
+              <Route path="allconversations/:id" element={<Pages.AllConversationsPage />} />
+              <Route path="conversation/:id" element={<Pages.ConversationPage />} />
+            </Route>
           </Routes>
         </ConversationsProvider>
       </ThemeProvider>

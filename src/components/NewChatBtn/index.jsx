@@ -27,15 +27,15 @@ export default function NewChatBtn() {
                 },
                 body: JSON.stringify({
                     account_id: data.id,
-                    conversation_summary: data.title,
+                    conversation_title: data.title,
                     language: data.language
                 })
             };
-            const response = await fetch('http://localhost:5015/conversations', option);
+            const response = await fetch('http://localhost:3000/conversations', option);
 
             if (response.ok) {
                 const { conversation_id } = await response.json();
-                navigate(`/user/conversation/${conversation_id}`);
+                navigate(`/conversation/${conversation_id}`);
             } else {
                 console.error('Failed to create conversation:', response.statusText);
             }
