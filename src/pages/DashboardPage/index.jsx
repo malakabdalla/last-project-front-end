@@ -10,7 +10,9 @@ export default function DashboardPage() {
 
   return (
     <div id="dashboard">
-      <NewChatBtn />
+      <div className="flex justify-end mr-4">
+        <NewChatBtn />
+      </div>
       <div>
         <Link id="link" to={`/allconversations/${id}`}>
           New Conversations →
