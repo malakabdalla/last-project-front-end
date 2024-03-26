@@ -1,16 +1,58 @@
 .conversation-card {
     display: inline-block;
     margin-right: 10px;
+    margin-bottom: 4rem;
 }
 
 .conversation-card img {
     margin: auto;
-    width: 100px;
-    height: 100px;
+    transition: transform 0.5s;
 }
+
+.conversation-card:hover img {
+    transform: scale(1.1);
+    transition: transform 0.5s;
+}
+
+.conversation-card:hover h2 {
+    color: #ff8b8b;
+    transition: color 0.5s;
+}
+
+/* Rotate the hue per image */
+.conversation-card img.image-number-1 {
+    filter: hue-rotate(30deg);
+}
+.conversation-card img.image-number-2 {
+    filter: hue-rotate(330deg);
+}
+.conversation-card img.image-number-3 {
+    filter: hue-rotate(270deg);
+}
+.conversation-card img.image-number-4 {
+    filter: hue-rotate(120deg);
+}
+.conversation-card img.image-number-5 {
+    filter: hue-rotate(150deg);
+}
+.conversation-card img.image-number-6 {
+    filter: hue-rotate(300deg);
+}
+.conversation-card img.image-number-7 {
+    filter: hue-rotate(210deg);
+}
+.conversation-card img.image-number-8 {
+    filter: hue-rotate(240deg);
+}
+
+
 
 .conversation-card h2 {
     text-align: center;
-    font-size: 30px;
-    color: black;
+    /* font-size: 30px; */
+    /* color: black; */
+}
+
+.conversation-card:hover {
+    color: ;
 }

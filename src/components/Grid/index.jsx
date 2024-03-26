@@ -10,10 +10,10 @@ export default function ConversationsGrid() {
 
     return (
         <>
-            <div className='conversation'>
-                {conversations.slice(0,10).map(conversation => (
+            <div className="flex gap-20 flex-wrap justify-between mt-20">
+                {conversations.slice(0,8).map((conversation, index) => (
                     <Link key={conversation.conversation_id} to={`/conversation/${conversation.conversation_id}`}>
-                        <ConversationCard conversation={conversation}/>
+                        <ConversationCard conversation={conversation} index={index}/>
                     </Link>
                 ))}
             </div>

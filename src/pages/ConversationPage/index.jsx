@@ -17,7 +17,7 @@ function ConversationPage() {
     const mockGreetingMessage = {
       role: "assistant",
       messages: {
-        gpt_response_english: "Hello, welcome to your language learning app! What would you like to do today: practice a conversation, explore vocabularly, or test your pronunciation?",
+        gpt_response_english: "Welcome to Mother Tongue! Would you like to practise a life-like conversation, or learn more about the Gujarati language?",
       },
       // The audio file is in `Public/audio/mockk_static_audio.mp3`
       audio: "/audio/mock_static_audio.mp3",
@@ -113,7 +113,7 @@ function ConversationPage() {
   }
 
   return (
-    <main className="m-10 flex flex-col items-center gap-10">
+    <main className="mx-10 mt-6 flex flex-col items-center gap-10">
 
       <nav className="w-full flex justify-start">
         <NavLink to="/dashboard">
@@ -125,20 +125,39 @@ function ConversationPage() {
           </span>
         </NavLink>
       </nav>
-      
-      <h1>Mother Tongue</h1>
-      <h2>Instructions</h2>
-      <p>
-        Welcome to Mother Tongue! A tool to help you learn and practice your Gujarati. Start by saying 'kem cho', a common greeting which means 'How are you?'. Have fun!
-      </p>
 
-      
+      {/* CSS Animation */}
+      <style>
+        {`
+          @keyframes growShrink {
+            0%, 100% {
+              transform: scale(1);
+              filter: hue-rotate(0deg);
+              
+            }
+            50% {
+              transform: scale(1.1);
+              filter: hue-rotate(360deg);
+
+            }
+          }
+        `}
+      </style>
+      <div className={`w-40 ${isLoading ? 'animate-pulse' : ''}`}>
+        <img src="/colourful-circle.png" alt="Colourful blob" className="w-full"
+          style={{
+            animation: isLoading ? 'growShrink 2s ease-in-out infinite' : 'none',
+            transition: 'transform 0.5s ease-out',
+          }}
+        />
+      </div>
+
       {conversation
         .filter((item) => item.role !== "system")
         .map((item, index) => (
           <Message key={index} data={item} />
         ))}
-      
+
       <div ref={conversationEndRef} />
       {isLoading && <p>Loading...</p>} {/* Display loading indicator */}
       <AudioInput sendAudioToServer={sendAudioToServer} />
