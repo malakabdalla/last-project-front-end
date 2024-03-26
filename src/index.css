@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-
+#root {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;
+    justify-content: center; */
+    min-height: 100vh;
+}
 
 body.dark {
     background-color: rgba(7, 0, 82, 1);
@@ -10,7 +16,7 @@ body.dark {
     margin: 0;
     transition: background 0.3s linear, color 0.3s linear;
     padding-top: 0;
-    max-width: 1300px;
+    /* max-width: 1300px; */
     margin: 0 auto;
     padding-bottom: 0;
     padding-top: 0;
@@ -28,7 +34,7 @@ body.light {
     margin: 0;
     transition: background 0.3s linear, color 0.3s linear;
     padding-top: 0;
-    max-width: 1300px;
+    /* max-width: 1300px; */
     margin: 0 auto;
     padding-bottom: 0;
     padding-top: 0;
