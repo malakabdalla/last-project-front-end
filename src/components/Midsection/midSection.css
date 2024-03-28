@@ -1,0 +1,53 @@
+.midSection {
+    display: flex;
+    flex-direction: row;
+    column-gap: 200px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    margin-top: 90px;
+    margin-bottom: 300px;
+}
+
+.landingImg2 {
+    height: 590px;
+    /* width: 1000px; */
+}
+
+.second-title {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.small-para {
+    font-size: 16px;
+    margin-bottom: 50px;
+}
+
+.text {
+    max-width: 530px;
+    max-height: 400px;
+    overflow: hidden;
+}
+
+.unordered-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.unordered-list li {
+    position: relative;
+    padding-left: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.unordered-list li::before {
+    content: '';
+    position: absolute;
+    top: 0.3em;
+    left: 0;
+    width: 1em;
+    height: 1em;
+    background-color: black;
+}

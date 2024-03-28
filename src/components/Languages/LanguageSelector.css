@@ -1,0 +1,48 @@
+.language-selector {
+
+    /* min-height: 100vh; */
+}
+
+.language-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6rem;
+}
+
+.language-options label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.language-options input[type="radio"] {
+    display: none;
+}
+
+.language-options img {
+    width: 100px;
+
+    height: 100px;
+
+    border-radius: 50%;
+}
+
+.language-options span {
+    margin-top: 5px;
+}
+
+.flag {
+    outline: 0rem solid white;
+    transition: all 0.3s;   
+}
+
+.selected {
+    .flag {
+        outline: 0.5rem solid white;
+        transition: all 0.3s;   
+    }
+
+}

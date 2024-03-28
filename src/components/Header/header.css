@@ -1,0 +1,27 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 6rem;
+    padding: 10px 20px;
+    color: black;
+}
+
+.header nav {
+    margin-left: auto;
+}
+
+.header nav {
+    display: flex;
+}
+
+.header nav a {
+    text-decoration: none;
+    color: black;
+    margin-right: 20px;
+}
+
+.header nav a:last-child {
+    margin-right: 0;
+}
+

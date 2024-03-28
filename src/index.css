@@ -2,27 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    margin: 0;
-    transition: background 0.3s linear, color 0.3s linear;
-    padding-top: 0;
-    max-width: 1300px;
-    margin: 0;
-    padding-bottom: 0px;
-    padding-top: 0px;
-    max-width: 1300px;
-
-}
-
 #root {
-    padding: 0;
-    margin: 0;
-    max-width: 1300;
-
-    height: 100vh;
-
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;
+    justify-content: center; */
+    min-height: 100vh;
+    
 }
-
 
 body.dark {
     background-color: rgba(7, 0, 82, 1);
@@ -30,11 +17,11 @@ body.dark {
     margin: 0;
     transition: background 0.3s linear, color 0.3s linear;
     padding-top: 0;
-    max-width: 1300px;
+    /* max-width: 1300px; */
     margin: 0 auto;
     padding-bottom: 0;
     padding-top: 0;
-    max-width: 1300px;
+    /* max-width: 1300px; */
 
     margin: 0 auto;
     padding-bottom: 0;
@@ -48,15 +35,21 @@ body.light {
     margin: 0;
     transition: background 0.3s linear, color 0.3s linear;
     padding-top: 0;
-    max-width: 1300px;
+    /* max-width: 1300px; */
     margin: 0 auto;
     padding-bottom: 0;
     padding-top: 0;
-    max-width: 1300px;
+    /* max-width: 1300px; */
 
     margin: 0 auto;
     padding-bottom: 0;
     display: block;
 
 
+}
+
+.page-loaded {
+    height: 100vh;
+    /* background: linear-gradient(135deg, rgba(220, 234, 255, 0.644) 25%, rgba(255, 146, 168, 0.712) 100%); */
+    background-image: linear-gradient(to bottom right, #f7d6e0, #f9a8d4);
 }
