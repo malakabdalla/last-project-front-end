@@ -11,7 +11,7 @@
 
 # this project is deployed on:
 
-https://mt-fe-s1.onrender.com/
+(https://last-project-front-end.onrender.com/)
 <br>
 the demo account added for this project:<br>
 email: nishan@ikigai.com<br>
