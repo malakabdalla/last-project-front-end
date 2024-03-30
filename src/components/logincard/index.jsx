@@ -21,54 +21,68 @@ function LoginCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   
-  
-  
-  const handleLogin = async () => {
-  try {
-    const loginResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email, password })
-    });
+   async function handleSubmit(e) {
+    e.preventDefault();
 
-    if (loginResponse.ok) {
-      const tokenData = await loginResponse.json();
-      const userInfoResponse = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/tokens/${tokenData.token}`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }
-      );
+    const { username, password } = formData;
 
-      if (userInfoResponse.ok) {
-        const userInfoData = await userInfoResponse.json();
-        const userInfo = {
-          token: tokenData.token,
-          userid: userInfoData.account_id,
-        };
-        await login(userInfo);
-        // Redirect using React Router
-        history.push("/dashboard");
-      } else {
-        const errorData = await userInfoResponse.json();
-        alert(errorData.error || "An error occurred during login.");
-      }
+    const predefinedUsername = "demdemo";
+    const predefinedPassword = "demo123456789";
+
+    if (username === predefinedUsername && password === predefinedPassword) {
+      setUser(username);
+      navigate("/dashboard");
     } else {
-      const errorData = await loginResponse.json();
-      alert(errorData.error || "An error occurred during login.");
+      console.error("Invalid credentials");
     }
-  } catch (error) {
-    console.error("Error:", error);
-    alert("An error occurred during login.");
   }
-};
+  
+//   const handleLogin = async () => {
+//   try {
+//     const loginResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
+//       method: 'POST',
+//       headers: {
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({ email, password })
+//     });
+
+//     if (loginResponse.ok) {
+//       const tokenData = await loginResponse.json();
+//       const userInfoResponse = await fetch(
+//         `${import.meta.env.VITE_BACKEND_URL}/tokens/${tokenData.token}`,
+//         {
+//           method: "GET",
+//           headers: {
+//             Accept: "application/json",
+//             "Content-Type": "application/json",
+//           },
+//         }
+//       );
+
+//       if (userInfoResponse.ok) {
+//         const userInfoData = await userInfoResponse.json();
+//         const userInfo = {
+//           token: tokenData.token,
+//           userid: userInfoData.account_id,
+//         };
+//         await login(userInfo);
+//         // Redirect using React Router
+//         history.push("/dashboard");
+//       } else {
+//         const errorData = await userInfoResponse.json();
+//         alert(errorData.error || "An error occurred during login.");
+//       }
+//     } else {
+//       const errorData = await loginResponse.json();
+//       alert(errorData.error || "An error occurred during login.");
+//     }
+//   } catch (error) {
+//     console.error("Error:", error);
+//     alert("An error occurred during login.");
+//   }
+// };
 
 
   return (
@@ -123,7 +137,7 @@ function LoginCard() {
                 <button
                   className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                   type="button"
-                  onClick={handleLogin}
+                  onClick={handleSubmit}
                 >
                   Continue
                 </button>
