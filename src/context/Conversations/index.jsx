@@ -8,7 +8,7 @@ export const ConversationsProvider = ({ children }) => {
     useEffect(() => {
         const fetchConversations = async () => {
             const id = sessionStorage.getItem('userid');
-            const response = await fetch(`http://localhost:3000/conversations/user/${id}`);
+            const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/user/${id}");
             const data = await response.json();
             setConversations(data);
         };
