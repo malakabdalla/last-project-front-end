@@ -20,9 +20,8 @@ function LoginCard() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-const handleLogin = async () => {
-  try {
+    const handleLogin = async () => {
+     try {
     const tokenResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
       method: 'POST',
       headers: {
@@ -31,11 +30,36 @@ const handleLogin = async () => {
       },
       body: JSON.stringify({ email, password })
     });
-    // Handle tokenResponse
-  } catch (error) {
-    // Handle error
-  }
-};
+
+      if (tokenResponse.ok) {
+        const tokenData = await tokenResponse.json();
+        const userInfoResponse = await fetch(
+          `http://localhost:3000/tokens/${tokenData.token}`,
+          {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const userInfoData = await userInfoResponse.json();
+        const userInfo = {
+          token: tokenData.token,
+          userid: userInfoData.account_id,
+        };
+        await login(userInfo);
+        window.location.href = "/dashboard";
+      } else {
+        const errorData = await userInfoResponse.json();
+        alert(errorData.error || "An error occurred during login.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred during login.");
+    }
+  };
+  
 
 
       if (tokenResponse.ok) {
