@@ -23,7 +23,7 @@ function LoginCard() {
 
   const handleLogin = async () => {
     try {
-      const tokenResponse = await fetch('http://localhost:3000/profiles/login', {
+      const tokenResponse = await fetch(import.meta.env.VITE_BACKEND_URL + "/login"), {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
