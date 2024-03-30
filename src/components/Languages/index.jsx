@@ -32,7 +32,7 @@ const LanguageSelector = () => {
           />
           <img
             className="flag"
-            src="../../../public/Arabic.png"
+            src="./Arabic.png"
             alt="Saudi arabia"
           />
           <span>Arabic</span>
@@ -50,7 +50,7 @@ const LanguageSelector = () => {
           />
           <img
             className="flag"
-            src="../../../public/Gujarati.png"
+            src="./Gujarati.png"
             alt="Gujarati"
           />
           <span>Gujarati</span>
@@ -68,7 +68,7 @@ const LanguageSelector = () => {
           />
           <img
             className="flag"
-            src="../../../public/Somali.png"
+            src="./Somali.png"
             alt="Somali Flag"
           />
           <span>Somali</span>
@@ -86,7 +86,7 @@ const LanguageSelector = () => {
           />
           <img
             className="flag"
-            src="../../../public/Urdu.png"
+            src="./Urdu.png"
             alt="Urdu Flag"
           />
           <span>Urdu</span>
@@ -104,7 +104,7 @@ const LanguageSelector = () => {
           />
           <img
             className="flag"
-            src="../../../public/Yorùbá.png"
+            src="./Yorùbá.png"
             alt="Yorùbá Flag"
           />
           <span>Yorùbá</span>
@@ -122,7 +122,7 @@ const LanguageSelector = () => {
           />
           <img
             className="flag"
-            src="../../../public/Polish.png"
+            src="./Polish.png"
             alt="Polish Flag"
           />
           <span>Polish</span>
