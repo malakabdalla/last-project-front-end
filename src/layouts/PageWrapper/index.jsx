@@ -11,7 +11,7 @@ const PageWrapper = () => {
           <div className="logo-scroll">
             <NavLink className="logo" to="/">
               <img
-                src="../../../public/MotherTongue.svg"
+                src="./MotherTongue.svg"
                 alt="Mother Tongue Logo"
               />
             </NavLink>
