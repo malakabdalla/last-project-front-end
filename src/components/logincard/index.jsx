@@ -21,16 +21,22 @@ function LoginCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
-    try {
-      const tokenResponse = await fetch(import.meta.env.VITE_BACKEND_URL + "/login"), {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-      });
+const handleLogin = async () => {
+  try {
+    const tokenResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    });
+    // Handle tokenResponse
+  } catch (error) {
+    // Handle error
+  }
+};
+
 
       if (tokenResponse.ok) {
         const tokenData = await tokenResponse.json();
