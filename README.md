@@ -8,6 +8,13 @@
 </div>
 
 <br>
+# this is a demo of the project:
+
+
+
+https://github.com/malakabdalla/last-project-front-end/assets/142964413/046325b4-fe18-437d-981d-8f829535aa76
+
+
 
 # this project is deployed on:
 
